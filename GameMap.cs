@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    public class GameMap
+    public abstract class GameMap
     {
         public GameMap()
         {
             Console.WriteLine("GameMap created");
         }
 
-        public static void GetMap()
+        /// <summary>
+        /// displays the map of the current game in the terminal window
+        /// </summary>
+        public void GetMap()
         {
             Console.WriteLine("Getting Map");
         }

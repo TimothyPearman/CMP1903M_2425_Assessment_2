@@ -21,6 +21,6 @@ namespace DungeonExplorer
             // Create a new instance of the game and start it
             Game game = new Game();
             game.Start();
-        }
+        } 
     }
 }
