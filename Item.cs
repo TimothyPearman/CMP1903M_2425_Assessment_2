@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    public class Item
+    public class Item : Event
     {
         public Item()
         {
             Console.WriteLine("Item created");
         }
 
-        public static void GetItem()
+        public void GetEvent()
         {
             Console.WriteLine("Getting Item");
         }
 
-        public static void GetItemStats()
+        public void GetEventStats()
         {
             Console.WriteLine("Getting Item Stats");
         }

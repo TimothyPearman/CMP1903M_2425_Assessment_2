@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="UserInput.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Monster.cs" />

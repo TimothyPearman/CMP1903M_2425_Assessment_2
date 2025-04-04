@@ -10,7 +10,7 @@ namespace DungeonExplorer
     {
         public GameMap()
         {
-            Console.WriteLine("GameMap created");
+            //Console.WriteLine("GameMap created"); // debug
         }
 
         /// <summary>
