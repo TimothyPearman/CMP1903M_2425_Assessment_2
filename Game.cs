@@ -8,7 +8,7 @@ namespace DungeonExplorer
     /// Game class
     /// Sets up the main gameplay
     /// </summary>internal
-    class Game
+    class Game : GameMap
     {
         private Player _player;
         private Room _currentRoom;
@@ -125,7 +125,7 @@ namespace DungeonExplorer
                              // ensure room item exists
                             Debug.Assert(!string.IsNullOrEmpty(_currentRoom.item), "Room item is null or empty!", "random item was not generated correctly");
 
-                            _player.PickUpItem(_currentRoom.item);
+                            Inventory.Add(_currentRoom.item);
                             getUserInput = false;
                             Console.Clear();
                         }
@@ -154,7 +154,7 @@ namespace DungeonExplorer
             }
             if (userInput.ToLower() == "inventory" || userInput.ToLower() ==  "i")
             {
-                _player.InventoryContents(); // display player inventory
+                Inventory.Check(); // display inventory contents
             }
             if (userInput.ToLower() == "health" || userInput.ToLower() == "h")
             {

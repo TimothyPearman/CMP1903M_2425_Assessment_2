@@ -12,7 +12,6 @@ namespace DungeonExplorer
     {
         public string name;
         public int health;
-        private List<string> _inventory = new List<string>();
 
         /// <summary>
         /// allows for getting and setting of the field name
@@ -65,32 +64,13 @@ namespace DungeonExplorer
 
         /// <summary>
         /// sets the players default fields
-        /// <param name="name">The player's chosen alias</param>
         /// </summary>
+        /// <param name="name">The player's chosen alias</param>
         public Player(string name) 
         {
             this.name = name;
             this.health = 100;
-            _inventory.Add("Sword");
-        }
-
-        /// <summary>
-        /// adds an item to the player's inventory
-        /// <param name="item">The item to be added to the inventory</param>
-        /// </summary>
-        public void PickUpItem(string item)
-        {
-             // add item to player inventory array
-            _inventory.Add(item);
-        }
-
-        /// <summary>
-        /// displays the contents of the player's inventory
-        /// </summary>
-        public void InventoryContents()
-        {
-             // display player inventory
-            Console.WriteLine(string.Join(", ", _inventory));
+            Inventory.inventory.Add("Sword");
         }
 
         /// <summary>

@@ -8,25 +8,40 @@ namespace DungeonExplorer
 {
     public class Inventory
     {
+        public static List<string> inventory = new List<string>();
+
         public Inventory()
         {
             Console.WriteLine("Inventory created");
             List<Item> inventory = new List<Item>();
         }
 
+        /// <summary>
+        /// displays the contents of the player's inventory
+        /// </summary>
         public static void Check() 
         {
-            Console.WriteLine("Checking inventory");
+            // display player inventory
+            Console.WriteLine(string.Join(", ", inventory));
         }
 
-        public static void Add()
+        /// <summary>
+        /// Adds an item to the player's inventory
+        /// </summary>
+        /// <param name="item">The item to be added to the inventory</param>
+        public static void Add(string item)
         {
-            Console.WriteLine("Add to inventory");
+            // add item to player inventory array
+            inventory.Add(item);
         }
 
-        public static void Remove()
+        /// <summary>
+        /// Removes an item from the player's inventory at the specified index.
+        /// </summary>
+        /// <param name="index">The item to be removed from the inventory</param>
+        public static void Remove(string index)
         {
-            Console.WriteLine("Remove from inventory");
+            inventory.RemoveAt(Convert.ToInt32(index));  
         }
     }
 }
