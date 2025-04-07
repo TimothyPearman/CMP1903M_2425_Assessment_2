@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    public class Inventory
+    /// <summary>
+    /// summary
+    /// </summary>
+    public static class Inventory
     {
         public static List<string> inventory = new List<string>();
-
-        public Inventory()
-        {
-            Console.WriteLine("Inventory created");
-            List<Item> inventory = new List<Item>();
-        }
 
         /// <summary>
         /// displays the contents of the player's inventory

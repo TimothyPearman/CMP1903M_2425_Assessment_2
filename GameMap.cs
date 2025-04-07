@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
+    /// <summary>
+    /// summary
+    /// </summary>
     public abstract class GameMap
     {
+        /// <summary>
+        /// summary
+        /// </summary>
         public GameMap()
         {
             //Console.WriteLine("GameMap created"); // debug

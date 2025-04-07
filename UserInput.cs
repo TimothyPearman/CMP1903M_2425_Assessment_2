@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,40 +12,110 @@ namespace DungeonExplorer
     /// </summary>
     public class UserInput
     {
-        public static void GetInput()
+        /// <summary>
+        /// summary
+        /// </summary>
+        public static void Get(int iteration)
         {
-            /*
-            // begin user input loop to get player name
+            string userInput = "";
+           
+             // begin user input loop to get player name
             bool getUserInput = true;
-            while (getUserInput)
+            while (getUserInput) 
             {
-                string userInput = Console.ReadLine();
-
-                if (CheckUserInput(userInput, 0))
-                {
-                    getUserInput = false;
-                    continue;
-                }
-                Console.WriteLine("please enter a valid name");
+                 // get user input and validate it against context
+                userInput = Console.ReadLine().ToLower();
+                getUserInput = !Check(userInput, iteration);
             }
-            */
         }
 
-        public static void CheckUserInput(string userInput, int inputContext)
+        /// <summary>
+        /// summary
+        /// </summary>
+        public static bool Check(string userInput, int iteration)
         {
-            /*
-            if (inputContext == 0)
-            { // name context
-                if (userInput == "" || userInput == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+            if (userInput.ToLower() == "quit" || userInput.ToLower() == "q")
+            {
+                Environment.Exit(0); // exit the program
             }
-            */
+
+            switch (iteration)
+            {
+                 // user name context
+                case 0:
+                    if (userInput == "" || userInput == null)
+                    {
+                        Console.WriteLine("please enter a valid input");
+                        return false;
+                    }
+                    else
+                    {
+                        Player.Name = userInput;
+                        return true;
+                    }
+
+                 // select action context (inventory,health,move room)
+                case 1:
+                    switch (userInput)
+                    {
+                        case "i":
+                        case "inventory":
+                            //Console.WriteLine("inventory"); // debug
+                            Inventory.Check(); // display inventory contents
+
+                            return true;
+
+                        case "h":
+                        case "health":
+                            //Console.WriteLine("health"); // debug
+                            Player.CheckHealth(); // display player health
+
+                            return true;
+
+                        case "e":
+                        case "engage":
+                            //Console.WriteLine("engage"); // debug
+
+                            return true;
+
+                        case "s":
+                        case "search":
+                            //Console.WriteLine("search"); // debug
+
+                            return true;
+
+                        case "m":
+                        case "move":
+                            //Console.WriteLine("move"); // debug
+
+                            return true;
+
+                        default:
+                            Console.WriteLine("please enter a valid input");
+
+                            return false;
+                    }
+
+                 // select action context (yes/no, keep,leave.drop
+                case 2:
+                    if (userInput.ToLower() == "y" || userInput.ToLower() == "n")
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                default:
+                    // error handling
+                    Console.WriteLine("Something broke :C");
+                    Debug.Assert(false, "user input iteration not found");
+
+                    break;
+            }
+
+            return true;
         }
     }
 }

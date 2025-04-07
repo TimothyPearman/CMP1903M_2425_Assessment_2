@@ -32,13 +32,7 @@ namespace DungeonExplorer
             this._wallDescription = new string[] { "pristine", "worn", "weathered", "cracked", "damp", "moldy", "crumbling", "rotten", "decrepit", "collapsed" };
             this._lightDescription = new string[] { "blinding", "bright", "warm", "dim", "flickering", "weak", "dull", "sparse", "barely any", "almost no" };
 
-            Console.Clear();
-             // game context
-            Console.WriteLine("pulling  yourself to your feet, you begin to examine your surroundings\n");
-            Console.WriteLine("The walls caging you seem well kept, bathed by countless torches");
-            Console.WriteLine("You notice a sword displayed in the center of the room, and grab it as you march onward into the next room...");
-            Console.ReadKey();
-            Console.Clear();
+        
         }
 
         /// <summary>

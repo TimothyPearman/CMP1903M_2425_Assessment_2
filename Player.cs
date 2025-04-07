@@ -8,14 +8,15 @@ namespace DungeonExplorer
     /// Contains player's name and health as well as items in the inventory 
     /// as well as methods to display inventory and health and add to the inventory
     /// </summary>
-    public class Player
+    public static class Player
     {
-        public string name;
-        public int health;
+        public static string Name;
+        public static int Health = 100;
 
         /// <summary>
         /// allows for getting and setting of the field name
         /// </summary>
+        /*
         public string Name
         {
             get { return name; }
@@ -34,10 +35,12 @@ namespace DungeonExplorer
             }
 
         }
+        */
 
         /// <summary>
         /// allows for getting and setting of the field health
         /// </summary>
+        /*
         public int Health
         {
             get { return health; }
@@ -61,22 +64,25 @@ namespace DungeonExplorer
             }
 
         }
+        */
 
         /// <summary>
         /// sets the players default fields
         /// </summary>
         /// <param name="name">The player's chosen alias</param>
+        /*
         public Player(string name) 
         {
             this.name = name;
             this.health = 100;
             Inventory.inventory.Add("Sword");
         }
+        */
 
         /// <summary>
         /// displays the player's health
         /// </summary>
-        public void PlayerHealth()
+        public static void CheckHealth()
         {
              // display player health
             Console.WriteLine(Health);
