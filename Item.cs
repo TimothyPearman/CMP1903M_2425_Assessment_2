@@ -22,7 +22,7 @@ namespace DungeonExplorer
         /// <summary>
         /// summary
         /// </summary>
-        public void GetEvent()
+        public void GetEvent() 
         {
             Console.WriteLine("Getting Item");
         }

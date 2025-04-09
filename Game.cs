@@ -10,7 +10,6 @@ namespace DungeonExplorer
     /// </summary>internal
     class Game : GameContext
     {
-        private Room _currentRoom;
         public bool playing;
 
         /// <summary>
@@ -18,19 +17,16 @@ namespace DungeonExplorer
         /// </summary>
         public Game()
         {
+            // create the game map
+            Graph.Create();
+            Map.Create();
+
             GetContext(0);
 
             GetContext(1);
 
             // get, validate and assign player alias
             UserInput.Get(0);
-
-             // instantiate room object
-            _currentRoom = new Room(); //change this maybe? object for each room not single(static)
-
-             // ensure player and room objects were initialized correctly
-            Debug.Assert(Player.Name != null, "Player object was not initialized correctly!");
-            Debug.Assert(_currentRoom != null, "Room object was not initialized correctly!");
 
             GetContext(2);
         }
@@ -41,13 +37,14 @@ namespace DungeonExplorer
         public void Start()
         {
              // Change the playing logic into true and populate the while loop
-            playing = true;
+            playing = true; 
             while (playing)
             {
-                 // display room description to user
-                _currentRoom.GetDescription();
+                // display room description to user
+                //Room.GetDescription();
 
-                 // ask user what action they would like to take in the room
+                // ask user what action they would like to take in the room
+                Console.Clear();
                 GetContext(3);
                  // get user input and validate it against context
                 UserInput.Get(1);

@@ -14,78 +14,12 @@ namespace DungeonExplorer
         public static int Health = 100;
 
         /// <summary>
-        /// allows for getting and setting of the field name
-        /// </summary>
-        /*
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                // ensures user cannot enter an empty name and sets a default value
-                if (string.IsNullOrEmpty(value))
-                {
-                    Console.WriteLine("Name cannot be empty.");
-                    name = "Adventurer";
-                }
-                else
-                {
-                    name = value;
-                }
-            }
-
-        }
-        */
-
-        /// <summary>
-        /// allows for getting and setting of the field health
-        /// </summary>
-        /*
-        public int Health
-        {
-            get { return health; }
-            set
-            {
-                // ensures the player's health cannot fall outside the range 0-100
-                if (value > 100)
-                {
-                    Console.WriteLine("Error: health cannot exceed the range 0-100");
-                    health = 100;
-                }
-                else if(value < 0 )
-                {
-                    Console.WriteLine($"Your health is depleted, your journey ends here, {name}...");
-                    Environment.Exit(0); // exit the program
-                }
-                else
-                {
-                    health = value;
-                }
-            }
-
-        }
-        */
-
-        /// <summary>
-        /// sets the players default fields
-        /// </summary>
-        /// <param name="name">The player's chosen alias</param>
-        /*
-        public Player(string name) 
-        {
-            this.name = name;
-            this.health = 100;
-            Inventory.inventory.Add("Sword");
-        }
-        */
-
-        /// <summary>
         /// displays the player's health
         /// </summary>
         public static void CheckHealth()
         {
              // display player health
-            Console.WriteLine(Health);
+            Console.WriteLine(Health); 
         }
     }
 }

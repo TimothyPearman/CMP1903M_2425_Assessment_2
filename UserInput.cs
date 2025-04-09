@@ -53,7 +53,7 @@ namespace DungeonExplorer
                         Player.Name = userInput;
                         return true;
                     }
-
+                     
                  // select action context (inventory,health,move room)
                 case 1:
                     switch (userInput)
@@ -61,14 +61,20 @@ namespace DungeonExplorer
                         case "i":
                         case "inventory":
                             //Console.WriteLine("inventory"); // debug
+
+                            Console.Clear();
                             Inventory.Check(); // display inventory contents
+                            Console.ReadLine();
 
                             return true;
 
                         case "h":
                         case "health":
                             //Console.WriteLine("health"); // debug
+
+                            Console.Clear();
                             Player.CheckHealth(); // display player health
+                            Console.ReadLine();
 
                             return true;
 
@@ -76,17 +82,37 @@ namespace DungeonExplorer
                         case "engage":
                             //Console.WriteLine("engage"); // debug
 
+                            //Console.Clear();
+                            //?
+                            //Console.ReadLine();
+
                             return true;
 
                         case "s":
                         case "search":
                             //Console.WriteLine("search"); // debug
 
+                            //Console.Clear();
+                            //?
+                            //Console.ReadLine();
+
                             return true;
 
                         case "m":
                         case "move":
                             //Console.WriteLine("move"); // debug
+
+                            Console.Clear();
+                            Console.WriteLine("Actions: \n-up (w) \n-down (s) \n-left (a) \n-right (d)");
+                            Get(3);
+
+                            return true;
+
+                        case "map":
+                            //Console.WriteLine("map"); // debug
+
+                            Console.Clear();
+                            Map.Display(); // display map
 
                             return true;
 
@@ -106,6 +132,44 @@ namespace DungeonExplorer
                     {
                         return false;
                     }
+
+                case 3:
+                    switch (userInput)
+                    {
+                        case "w":
+                        case "up":
+                            //Console.WriteLine("up"); // debug
+                            //???
+
+                            return true;
+
+                        case "s":
+                        case "down":
+                            //Console.WriteLine("down"); // debug
+                            //???
+
+                            return true;
+
+                        case "a":
+                        case "left":
+                            //Console.WriteLine("left"); // debug
+                            //???
+
+                            return true;
+
+                        case "d":
+                        case "right":
+                            //Console.WriteLine("right"); // debug
+                            //???
+
+                            return true;
+
+                        default:
+                            Console.WriteLine("please enter a valid input");
+
+                            return false;
+                    }
+
 
                 default:
                     // error handling

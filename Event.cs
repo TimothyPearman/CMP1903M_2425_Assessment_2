@@ -8,7 +8,7 @@ namespace DungeonExplorer
 {
     public interface Event
     {
-        void GetEvent();
+        void GetEvent(); 
 
         void GetEventStats();
     }

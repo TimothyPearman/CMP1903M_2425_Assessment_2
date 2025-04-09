@@ -29,7 +29,7 @@ namespace DungeonExplorer
 
         /// <summary>
         /// summary
-        /// </summary>
+        /// </summary> 
         public void GetEventStats()
         {
             Console.WriteLine("Getting Monster Stats");

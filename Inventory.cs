@@ -16,7 +16,7 @@ namespace DungeonExplorer
         /// <summary>
         /// displays the contents of the player's inventory
         /// </summary>
-        public static void Check() 
+        public static void Check()  
         {
             // display player inventory
             Console.WriteLine(string.Join(", ", inventory));
