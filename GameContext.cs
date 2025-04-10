@@ -54,7 +54,7 @@ namespace DungeonExplorer
 
                 case 3:
                     // asks user for what action they would like to take (inventory/health/engage/search/move)
-                    Console.WriteLine("Actions: \n-Inventory (I)\n-Health (H)\n-Engage (E)\n-Search (S)\n-Move (M)\n-Map");
+                    Console.WriteLine("Actions: \n-Inventory (I)\n-Health (H)\n-Engage (E)\n-Search (S)\n-Move (M)");
                     //UserInput.Get(?);
 
                     break;

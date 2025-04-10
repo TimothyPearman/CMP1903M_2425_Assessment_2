@@ -12,6 +12,7 @@ namespace DungeonExplorer
     {
         public static string Name;
         public static int Health = 100;
+        public static int position = 12;
 
         /// <summary>
         /// displays the player's health

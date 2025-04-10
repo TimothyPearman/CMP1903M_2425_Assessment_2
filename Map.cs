@@ -90,8 +90,21 @@ namespace DungeonExplorer
             Console.WriteLine("║       ║       ║       ║       ║       ║\n" +
                               "+═══════+═══════+═══════+═══════+═══════+"); //bottom
 
-            Console.ReadLine();
-            Console.Clear();
+            //display player position
+            //calculate x and y coordinates based on player position value
+            int x = (Player.position % 5) + 1;
+            int y = (Player.position / 5) + 1;
+
+            // move cursor to the beginning of terminal
+            // then to the calculated position
+            Console.Write("\x1b[H");
+            Console.Write($"\x1b[{(x * 8) - 4}C");
+            Console.Write($"\x1b[{(y * 4) - 2}B");
+            Console.Write("O");
+
+            // reset terminal
+            //Console.ReadLine();
+            //Console.Clear();
         }
     }
 
@@ -123,44 +136,47 @@ namespace DungeonExplorer
         public static void RandomizeGraph(double connectionChance = 0.5)
         {
             // ensure every node has at least one connection
-            for (int row = 0; row < size; row++)
+            for (int pass = 0; pass < 2; pass++)
             {
-                for (int col = 0; col < size; col++)
+                for (int row = 0; row < size; row++)
                 {
-                    int index = row * size + col;
+                    for (int col = 0; col < size; col++)
+                    {
+                        int index = row * size + col;
 
-                    // generate random node connection
-                   switch (random.Next(0, 4))
-                   {
-                       case 0:
-                           if (index > 4)
-                           {
-                               AddEdge(index, index - 5); // up
-                           }
-                           break;
+                        // generate random node connection
+                        switch (random.Next(0, 4))
+                        {
+                            case 0:
+                                if (index > 4)
+                                {
+                                    AddEdge(index, index - 5); // up
+                                }
+                                break;
 
-                       case 1:
-                           if (index < 20)
-                           {
-                               AddEdge(index, index + 5); // down
-                           }
-                           break;
+                            case 1:
+                                if (index < 20)
+                                {
+                                    AddEdge(index, index + 5); // down
+                                }
+                                break;
 
-                       case 2:
-                           if (index % 5 != 0)
-                           {
+                            case 2:
+                                if (index % 5 != 0)
+                                {
 
-                               AddEdge(index, index - 1); // left
-                           }
-                           break;
+                                    AddEdge(index, index - 1); // left
+                                }
+                                break;
 
-                       case 3:
-                           if ((index % 5) - 4 != 0)
-                           {
-                               AddEdge(index, index + 1); // right
-                           }
-                           break;
-                   }
+                            case 3:
+                                if ((index % 5) - 4 != 0)
+                                {
+                                    AddEdge(index, index + 1); // right
+                                }
+                                break;
+                        }
+                    }
                 }
             }
 

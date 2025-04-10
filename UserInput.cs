@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -103,16 +104,11 @@ namespace DungeonExplorer
                             //Console.WriteLine("move"); // debug
 
                             Console.Clear();
-                            Console.WriteLine("Actions: \n-up (w) \n-down (s) \n-left (a) \n-right (d)");
+                            Map.Display();
+                            Console.Write("\x1b[H");
+                            Console.Write($"\x1b[22B");
+                            Console.WriteLine("Actions: \n-Stay \n-Up (w) \n-Down (s) \n-Left (a) \n-Right (d)");
                             Get(3);
-
-                            return true;
-
-                        case "map":
-                            //Console.WriteLine("map"); // debug
-
-                            Console.Clear();
-                            Map.Display(); // display map
 
                             return true;
 
@@ -136,31 +132,76 @@ namespace DungeonExplorer
                 case 3:
                     switch (userInput)
                     {
+                        case "":
+                        case "stay":
+
+                            return true;
+
                         case "w":
                         case "up":
                             //Console.WriteLine("up"); // debug
-                            //???
+
+                            if (Graph.CheckUp(Player.position))
+                            {
+                                Player.position -= 5; // move up
+                                Check("m",1);
+                            }
+                            else
+                            {
+                                Console.WriteLine("thats a wall...");
+                                Check("m", 1);
+                            }
 
                             return true;
 
                         case "s":
                         case "down":
                             //Console.WriteLine("down"); // debug
-                            //???
+                            
+                            if (Graph.CheckDown(Player.position))
+                            {
+                                Player.position += 5; // move down
+                                Check("m", 1);
+                            }
+                            else
+                            {
+                                Console.WriteLine("thats a wall...");
+                                Check("m", 1);
+                            }
 
                             return true;
 
                         case "a":
                         case "left":
                             //Console.WriteLine("left"); // debug
-                            //???
+                            
+                            if (Graph.CheckLeft(Player.position))
+                            {
+                                Player.position -= 1; // move left
+                                Check("m", 1);
+                            }
+                            else
+                            {
+                                Console.WriteLine("thats a wall...");
+                                Check("m", 1);
+                            }
 
                             return true;
 
                         case "d":
                         case "right":
                             //Console.WriteLine("right"); // debug
-                            //???
+
+                            if (Graph.CheckRight(Player.position))
+                            {
+                                Player.position += 1; // move right
+                                Check("m", 1);
+                            }
+                            else 
+                            {
+                                Console.WriteLine("thats a wall...");
+                                Check("m", 1);
+                            }
 
                             return true;
 
