@@ -21,14 +21,14 @@ namespace DungeonExplorer
             Graph.Create();
             Map.Create();
 
-            GetContext(0);
-
             GetContext(1);
+
+            GetContext(2);
 
             // get, validate and assign player alias
             UserInput.Get(0);
 
-            GetContext(2);
+            GetContext(3);
         }
 
         /// <summary>
@@ -40,12 +40,21 @@ namespace DungeonExplorer
             playing = true; 
             while (playing)
             {
-                // display room description to user
-                //Room.GetDescription();
 
                 // ask user what action they would like to take in the room
                 Console.Clear();
-                GetContext(3);
+
+                /*// check room for event and display to user
+                Console.WriteLine(Map.map[Player.positionX - 1, Player.positionY - 1].events);
+                if (false) 
+                {
+                    ;
+                }
+                */
+                
+
+                GetContext(4);
+
                  // get user input and validate it against context
                 UserInput.Get(1);
 

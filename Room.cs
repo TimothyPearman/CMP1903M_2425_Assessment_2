@@ -1,5 +1,6 @@
 ﻿using System.Xml.Linq;
 using System;
+using System.Collections.Generic;
 
 namespace DungeonExplorer
 {
@@ -10,18 +11,47 @@ namespace DungeonExplorer
     public class Room
     {
         public int roomNumber;
+        public int eventChance;
+        public List<IEvent> events = new List<IEvent>();
 
         private static readonly Random random = new Random();
 
         /// <summary>
         /// set the rooms default fields
         /// </summary>
-        public Room()
+        public Room(int index)
         {
-            this.roomNumber = 0;
-        
+            this.roomNumber = index;
+            this.eventChance = 3; // 1 in 3 chance of an event occurring
+
+            // randomly generate events for the room
+            for (int j = 0; j < 2; j++) 
+            {
+                if (random.Next(0, eventChance) == 0)
+                {
+                    //Console.WriteLine("event"); // debug
+
+                    switch(random.Next(0, 2))
+                    {
+                        case 0:
+                            events.Add(new Item());
+                            break;
+
+                        case 1:
+                            events.Add(new Monster());
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                else 
+                {
+                    //Console.WriteLine("no event"); // debug
+                }
+            }
         }
-         
+
         /// <summary>
         /// displays the description of the room
         /// </summary>

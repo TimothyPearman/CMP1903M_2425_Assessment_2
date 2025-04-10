@@ -9,14 +9,14 @@ namespace DungeonExplorer
     /// <summary>
     /// summary
     /// </summary>
-    public class Monster : Event
+    public class Monster : IEvent
     {
         /// <summary>
         /// summary
         /// </summary>
         public Monster()
         {
-            Console.WriteLine("Monster created");
+            //Console.WriteLine("Monster created"); // debug
         }
 
         /// <summary>

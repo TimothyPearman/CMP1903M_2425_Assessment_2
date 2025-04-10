@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    public interface Event
+    public interface IEvent
     {
         void GetEvent(); 
 

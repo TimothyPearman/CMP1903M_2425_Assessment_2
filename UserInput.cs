@@ -35,8 +35,14 @@ namespace DungeonExplorer
         /// </summary>
         public static bool Check(string userInput, int iteration)
         {
+            List<IEvent> events = new List<IEvent>();
+
             if (userInput.ToLower() == "quit" || userInput.ToLower() == "q")
             {
+                Console.Clear(); 
+                Console.WriteLine("Thanks for playing! :D");
+                Console.ReadLine(); 
+
                 Environment.Exit(0); // exit the program
             }
 
@@ -46,7 +52,7 @@ namespace DungeonExplorer
                 case 0:
                     if (userInput == "" || userInput == null)
                     {
-                        Console.WriteLine("please enter a valid input");
+                        GameContext.GetContext(0);
                         return false;
                     }
                     else
@@ -64,7 +70,10 @@ namespace DungeonExplorer
                             //Console.WriteLine("inventory"); // debug
 
                             Console.Clear();
+
                             Inventory.Check(); // display inventory contents
+                            GameContext.GetContext(6);
+
                             Console.ReadLine();
 
                             return true;
@@ -83,9 +92,23 @@ namespace DungeonExplorer
                         case "engage":
                             //Console.WriteLine("engage"); // debug
 
-                            //Console.Clear();
-                            //?
-                            //Console.ReadLine();
+                            Console.Clear();
+
+                            events = Map.map[Player.positionX - 1, Player.positionY - 1].events;
+
+                            if (events.Count != 0)
+                            {
+                                foreach (var ev in events)
+                                {
+                                    Console.WriteLine(ev);
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("No Monsters found");
+                            }
+
+                            Console.ReadLine();
 
                             return true;
 
@@ -93,9 +116,23 @@ namespace DungeonExplorer
                         case "search":
                             //Console.WriteLine("search"); // debug
 
-                            //Console.Clear();
-                            //?
-                            //Console.ReadLine();
+                            Console.Clear();
+
+                            events = Map.map[Player.positionX - 1, Player.positionY - 1].events;
+
+                            if (events.Count != 0) 
+                            {
+                                foreach (var ev in events)
+                                {
+                                    Console.WriteLine(ev);
+                                }
+                            }
+                            else 
+                            {
+                                Console.WriteLine("No Items found");
+                            }
+                                
+                            Console.ReadLine();
 
                             return true;
 
@@ -105,15 +142,13 @@ namespace DungeonExplorer
 
                             Console.Clear();
                             Map.Display();
-                            Console.Write("\x1b[H");
-                            Console.Write($"\x1b[22B");
-                            Console.WriteLine("Actions: \n-Stay \n-Up (w) \n-Down (s) \n-Left (a) \n-Right (d)");
+                            GameContext.GetContext(5);
                             Get(3);
 
                             return true;
 
                         default:
-                            Console.WriteLine("please enter a valid input");
+                            GameContext.GetContext(0);
 
                             return false;
                     }
@@ -148,7 +183,6 @@ namespace DungeonExplorer
                             }
                             else
                             {
-                                Console.WriteLine("thats a wall...");
                                 Check("m", 1);
                             }
 
@@ -165,7 +199,6 @@ namespace DungeonExplorer
                             }
                             else
                             {
-                                Console.WriteLine("thats a wall...");
                                 Check("m", 1);
                             }
 
@@ -182,7 +215,6 @@ namespace DungeonExplorer
                             }
                             else
                             {
-                                Console.WriteLine("thats a wall...");
                                 Check("m", 1);
                             }
 
@@ -199,14 +231,13 @@ namespace DungeonExplorer
                             }
                             else 
                             {
-                                Console.WriteLine("thats a wall...");
                                 Check("m", 1);
                             }
 
                             return true;
 
                         default:
-                            Console.WriteLine("please enter a valid input");
+                            GameContext.GetContext(0);
 
                             return false;
                     }

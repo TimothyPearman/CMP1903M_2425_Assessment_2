@@ -13,7 +13,7 @@ namespace DungeonExplorer
     /// </summary>
     public static class Map
     {
-        private static Room[,] map;
+        public static Room[,] map;
 
         /// <summary>
         /// Constructor to initialize the map graph and populate each node with a room object 
@@ -30,7 +30,8 @@ namespace DungeonExplorer
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    map[i, j] = new Room { }; // Just an example initialization
+                    int index = (i * 5) + j;
+                    map[i, j] = new Room(index); // Just an example initialization
                 }
             }
         }
@@ -69,8 +70,8 @@ namespace DungeonExplorer
                     continue;
                 }
 
-                Console.WriteLine("║       ║       ║       ║       ║       ║ ");
-                Console.WriteLine("+       +       +       +       +       + ");
+                Console.WriteLine("║       ║       ║       ║       ║       ║\n" +
+                                  "+       +       +       +       +       + ");
 
                 for (int j = 0; j < 5; j++)
                 {
@@ -91,15 +92,13 @@ namespace DungeonExplorer
                               "+═══════+═══════+═══════+═══════+═══════+"); //bottom
 
             //display player position
-            //calculate x and y coordinates based on player position value
-            int x = (Player.position % 5) + 1;
-            int y = (Player.position / 5) + 1;
+            Player.positionX = (Player.position % 5) + 1;
+            Player.positionY = (Player.position / 5) + 1;
 
-            // move cursor to the beginning of terminal
-            // then to the calculated position
+            // move cursor to the beginning of terminal then to the calculated position
             Console.Write("\x1b[H");
-            Console.Write($"\x1b[{(x * 8) - 4}C");
-            Console.Write($"\x1b[{(y * 4) - 2}B");
+            Console.Write($"\x1b[{(Player.positionX * 8) - 4}C");
+            Console.Write($"\x1b[{(Player.positionY * 4) - 2}B");
             Console.Write("O");
 
             // reset terminal
