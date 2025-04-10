@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DungeonExplorer
 {
     /// <summary>
-    /// summary
+    /// contains and introduces methods to manage/edit the player's inventory
     /// </summary>
     public static class Inventory
     {
@@ -35,7 +35,7 @@ namespace DungeonExplorer
         /// <summary>
         /// Removes an item from the player's inventory at the specified index.
         /// </summary>
-        /// <param name="index">The item to be removed from the inventory</param>
+        /// <param name="index">The index of the item to be removed from the inventory</param>
         public static void Remove(string index)
         {
             inventory.RemoveAt(Convert.ToInt32(index));  

@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 namespace DungeonExplorer
 {
     /// <summary>
-    /// contains methods for user input that are used throughout the game
+    /// contains methods for getting and checking user input used throughout the game
     /// </summary>
     public class UserInput
     {
         /// <summary>
-        /// summary
+        /// creates a input loop to get valid user input
         /// </summary>
         public static void Get(int iteration)
         {
@@ -31,12 +31,13 @@ namespace DungeonExplorer
         }
 
         /// <summary>
-        /// summary
+        /// checks the validity of the user input against context and the accepted values
         /// </summary>
         public static bool Check(string userInput, int iteration)
         {
             List<IEvent> events = new List<IEvent>();
 
+            // check if user wishes to quit before proceeding
             if (userInput.ToLower() == "quit" || userInput.ToLower() == "q")
             {
                 Console.Clear(); 
@@ -50,6 +51,8 @@ namespace DungeonExplorer
             {
                  // user name context
                 case 0:
+                     //Console.WriteLine("quit"); // debug
+
                     if (userInput == "" || userInput == null)
                     {
                         GameContext.GetContext(0);
@@ -61,13 +64,13 @@ namespace DungeonExplorer
                         return true;
                     }
                      
-                 // select action context (inventory,health,move room)
+                 // select action context (inventory, health, engage, search, move)
                 case 1:
                     switch (userInput)
                     {
                         case "i":
                         case "inventory":
-                            //Console.WriteLine("inventory"); // debug
+                             //Console.WriteLine("inventory"); // debug
 
                             Console.Clear();
 
@@ -80,7 +83,7 @@ namespace DungeonExplorer
 
                         case "h":
                         case "health":
-                            //Console.WriteLine("health"); // debug
+                             //Console.WriteLine("health"); // debug
 
                             Console.Clear();
                             Player.CheckHealth(); // display player health
@@ -90,12 +93,14 @@ namespace DungeonExplorer
 
                         case "e":
                         case "engage":
-                            //Console.WriteLine("engage"); // debug
+                             //Console.WriteLine("engage"); // debug
 
                             Console.Clear();
 
+                             // copy list of events from Room object for legibility
                             events = Map.map[Player.positionX - 1, Player.positionY - 1].events;
 
+                             // if there is an event in the room, display to user
                             if (events.Count != 0)
                             {
                                 foreach (var ev in events)
@@ -118,8 +123,10 @@ namespace DungeonExplorer
 
                             Console.Clear();
 
+                             // copy list of events from Room object for legibility
                             events = Map.map[Player.positionX - 1, Player.positionY - 1].events;
 
+                             // if there is an event in the room, display to user
                             if (events.Count != 0) 
                             {
                                 foreach (var ev in events)
@@ -141,6 +148,7 @@ namespace DungeonExplorer
                             //Console.WriteLine("move"); // debug
 
                             Console.Clear();
+
                             Map.Display();
                             GameContext.GetContext(5);
                             Get(3);
@@ -148,12 +156,12 @@ namespace DungeonExplorer
                             return true;
 
                         default:
-                            GameContext.GetContext(0);
+                            GameContext.GetContext(0); // invalid input
 
                             return false;
                     }
 
-                 // select action context (yes/no, keep,leave.drop
+                /* // select action context (yes/no, keep,leave.drop)
                 case 2:
                     if (userInput.ToLower() == "y" || userInput.ToLower() == "n")
                     {
@@ -163,6 +171,7 @@ namespace DungeonExplorer
                     {
                         return false;
                     }
+                */
 
                 case 3:
                     switch (userInput)
@@ -176,6 +185,7 @@ namespace DungeonExplorer
                         case "up":
                             //Console.WriteLine("up"); // debug
 
+                            // check relationship of current and target nodes
                             if (Graph.CheckUp(Player.position))
                             {
                                 Player.position -= 5; // move up
@@ -191,7 +201,8 @@ namespace DungeonExplorer
                         case "s":
                         case "down":
                             //Console.WriteLine("down"); // debug
-                            
+
+                            // check relationship of current and target nodes
                             if (Graph.CheckDown(Player.position))
                             {
                                 Player.position += 5; // move down
@@ -207,7 +218,8 @@ namespace DungeonExplorer
                         case "a":
                         case "left":
                             //Console.WriteLine("left"); // debug
-                            
+
+                            // check relationship of current and target nodes
                             if (Graph.CheckLeft(Player.position))
                             {
                                 Player.position -= 1; // move left
@@ -224,6 +236,7 @@ namespace DungeonExplorer
                         case "right":
                             //Console.WriteLine("right"); // debug
 
+                            // check relationship of current and target nodes
                             if (Graph.CheckRight(Player.position))
                             {
                                 Player.position += 1; // move right
@@ -237,7 +250,7 @@ namespace DungeonExplorer
                             return true;
 
                         default:
-                            GameContext.GetContext(0);
+                            GameContext.GetContext(0); // invalid input
 
                             return false;
                     }

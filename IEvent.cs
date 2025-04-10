@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
+    /// <summary>
+    /// interface for identifying events within room objects
+    /// </summary>
     public interface IEvent
     {
-        void GetEvent(); 
-
         void GetEventStats();
     }
-}
+} 

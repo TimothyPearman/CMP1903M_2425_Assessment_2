@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace DungeonExplorer
 {
     /// <summary>
-    /// summary
+    /// defines a monster object and its properties
     /// </summary>
     public class Monster : IEvent
     {
         /// <summary>
-        /// summary
+        /// constructor for monster object
         /// </summary>
         public Monster()
         {
@@ -20,19 +20,11 @@ namespace DungeonExplorer
         }
 
         /// <summary>
-        /// summary
-        /// </summary>
-        public void GetEvent()
-        {
-            Console.WriteLine("Getting Monster");
-        }
-
-        /// <summary>
-        /// summary
+        /// displays the properties of the object
         /// </summary> 
         public void GetEventStats()
         {
-            Console.WriteLine("Getting Monster Stats");
+            Console.WriteLine("Getting Monster Stats"); // debug
         }
     }
 }

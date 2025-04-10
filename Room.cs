@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace DungeonExplorer
 {
     /// <summary>
-    /// Contains room number, item, item chance, item room and lists for possible items and room descriptions
+    /// Contains the number of the map node it is assigned to, and a list of events within the room
     /// as well as methods to get room description, check if the room has an item and get a random item
     /// </summary>
     public class Room
@@ -53,15 +53,11 @@ namespace DungeonExplorer
         }
 
         /// <summary>
-        /// displays the description of the room
+        /// displays the events within the room
         /// </summary>
         public static void GetDescription()
         {
-            /*
-             // generate the room description by iterating through the arrays giving more gloomy descriptions as the room number increases
-            Console.WriteLine($"The walls around you are {_wallDescription[roomNumber]}, there is {_lightDescription[roomNumber]} light filling the room");
-            roomNumber++;
-            */
+            // move event display from userinput class to here in later version 
         }
     }
 }

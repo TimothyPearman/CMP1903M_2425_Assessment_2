@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace DungeonExplorer
 {
     /// <summary>
-    /// summary
+    /// contains most of all text to be displayed during run time
     /// </summary>
     public abstract class GameContext
     {

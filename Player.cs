@@ -5,8 +5,7 @@ using System.Xml.Linq;
 namespace DungeonExplorer
 {
     /// <summary>
-    /// Contains player's name and health as well as items in the inventory 
-    /// as well as methods to display inventory and health and add to the inventory
+    /// Contains the player's name, health and grid and node map positions
     /// </summary>
     public static class Player
     {

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace DungeonExplorer
 {
     /// <summary>
-    /// summary
+    /// defines an item object and its properties
     /// </summary>
     public class Item : IEvent
     {
         /// <summary>
-        /// summary
+        /// constructor for item object
         /// </summary>
         public Item()
         {
@@ -20,19 +20,11 @@ namespace DungeonExplorer
         }
 
         /// <summary>
-        /// summary
+        /// displays the properties of the object
         /// </summary>
-        public void GetEvent() 
-        {
-            Console.WriteLine("Getting Item");
-        }
-
-        /// <summary>
-        /// summary
-        /// </summary>#
         public void GetEventStats()
         {
-            Console.WriteLine("Getting Item Stats");
+            Console.WriteLine("Getting Item Stats"); // debug
         }
     }
 }

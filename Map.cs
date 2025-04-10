@@ -9,7 +9,7 @@ using static System.Net.Mime.MediaTypeNames;
 namespace DungeonExplorer
 {
     /// <summary>
-    ///  Class representing the map
+    /// generates and displays the current state of the game map.
     /// </summary>
     public static class Map
     {
@@ -20,9 +20,9 @@ namespace DungeonExplorer
         /// </summary>
         public static void Create()
         {
-            //Console.WriteLine("creating Map");
+            //Console.WriteLine("creating Map"); // debug
 
-            // Create a 5x5 map
+            // Create a 5x5 grid to represent map
             map = new Room[5, 5];
 
             // Initialize each room (you can customize this further)
@@ -31,47 +31,49 @@ namespace DungeonExplorer
                 for (int j = 0; j < 5; j++)
                 {
                     int index = (i * 5) + j;
-                    map[i, j] = new Room(index); // Just an example initialization
+                    map[i, j] = new Room(index);
                 }
             }
         }
 
         /// <summary>
-        /// displays the map of the current game in the terminal window
+        /// displays the current state of the game map
         /// </summary>
         public static void Display()
         {
-            //Console.WriteLine("Displaying Map"); //debug
-            //Graph.PrintGraph(); 
+            //Console.WriteLine("Displaying Map"); // debug
+            //Graph.PrintGraph(); // debug
 
-            Console.WriteLine("+═══════+═══════+═══════+═══════+═══════+");//top
+            Console.WriteLine("+═══════+═══════+═══════+═══════+═══════+");// top of map
 
             for (int h = 0; h <= 4; h++)
             {
-                Console.WriteLine("║       ║       ║       ║       ║       ║ ");
-                Console.WriteLine("║                                       ║ ");
+                Console.WriteLine("║       ║       ║       ║       ║       ║ \n" +
+                                  "║                                       ║ "); // upper/middle static room walls
                 for (int i = 0; i < 4; i++)
                 {
+                    // backtrack to overwrite static room text with dynamic room walls
                     Console.Write("\x1b[A");
                     Console.Write($"\x1b[{8 * (i + 1)}C");
 
                     if (Graph.CheckRight((h * 5) + i))
                     {
-                        Console.WriteLine(" ");
+                        Console.WriteLine(" "); // dynamic room horizontal walls
                     }
                     else
                     {
-                        Console.WriteLine("║");
+                        Console.WriteLine("║"); // dynamic room horizontal walls
                     }
                 }
 
+                // break loop as bottom walls are not valid for bottom rooms
                 if (h == 4) 
                 {
                     continue;
                 }
 
                 Console.WriteLine("║       ║       ║       ║       ║       ║\n" +
-                                  "+       +       +       +       +       + ");
+                                  "+       +       +       +       +       + "); // lower/bottom static room walls
 
                 for (int j = 0; j < 5; j++)
                 {
@@ -80,39 +82,41 @@ namespace DungeonExplorer
 
                     if (Graph.CheckDown((h * 5) + j))
                     {
-                        Console.WriteLine("══   ══");
+                        Console.WriteLine("══   ══"); // dynamic room vertical walls
                     }
                     else
                     {
-                        Console.WriteLine("═══════");
+                        Console.WriteLine("═══════"); // dynamic room vertical walls
                     }
                 }
             }
             Console.WriteLine("║       ║       ║       ║       ║       ║\n" +
-                              "+═══════+═══════+═══════+═══════+═══════+"); //bottom
+                              "+═══════+═══════+═══════+═══════+═══════+"); // bottom of map
 
-            //display player position
+            // calculate player current grid position
             Player.positionX = (Player.position % 5) + 1;
             Player.positionY = (Player.position / 5) + 1;
 
-            // move cursor to the beginning of terminal then to the calculated position
+            // backtrack cursor to the beginning of terminal then to the player position
             Console.Write("\x1b[H");
             Console.Write($"\x1b[{(Player.positionX * 8) - 4}C");
             Console.Write($"\x1b[{(Player.positionY * 4) - 2}B");
             Console.Write("O");
-
-            // reset terminal
-            //Console.ReadLine();
-            //Console.Clear();
         }
     }
 
+    /// <summary>
+    /// generates a graph data structure and adjacency matrix to represent the map and relationships between room nodes.
+    /// </summary>
     public static class Graph
     {
         private static int size = 5;
         public static Dictionary<int, List<int>> adjList = new Dictionary<int, List<int>>();
         private static Random random = new Random();
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static void Create()
         {
             for (int i = 0; i < size * size; i++)
@@ -123,6 +127,9 @@ namespace DungeonExplorer
             RandomizeGraph();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static void AddEdge(int from, int to)
         {
             if (!adjList[from].Contains(to))
@@ -132,6 +139,9 @@ namespace DungeonExplorer
             }
         }
 
+        /// <summary>
+        /// generates random connections between graph nodes
+        /// </summary>
         public static void RandomizeGraph(double connectionChance = 0.5)
         {
             // ensure every node has at least one connection
@@ -143,7 +153,7 @@ namespace DungeonExplorer
                     {
                         int index = row * size + col;
 
-                        // generate random node connection
+                        // generate random direction node connection
                         switch (random.Next(0, 4))
                         {
                             case 0:
@@ -178,42 +188,11 @@ namespace DungeonExplorer
                     }
                 }
             }
-
-            /* ensure all nodes are connected to a single graph?
-            bool SingleGraph = false;
-            while (!SingleGraph) 
-            {
-                //DFS search
-
-                Dictionary<int, bool> searchedIndexes = new Dictionary<int, bool>();
-                int index = 0;
-
-                Console.Write("testing\n");
-                foreach (var neighbor in adjList[index])
-                {
-                    searchedIndexes
-                    Console.Write($"{index},{neighbor}");
-                }
-
-                Console.Write("\n");
-
-
-
-
-                if (SingleGraph)
-                {
-                    SingleGraph = true;
-                }
-                else
-                {
-                    SingleGraph = false;
-                }
-
-                SingleGraph = true;
-            }
-            */
         }
 
+        /// <summary>
+        /// checks if the target node has a connection to the node above it
+        /// </summary>
         public static bool CheckUp(int index)
         {
             //Console.WriteLine($"checking {index} up"); // debug
@@ -228,6 +207,9 @@ namespace DungeonExplorer
             }
         }
 
+        /// <summary>
+        /// checks if the target node has a connection to the node below it
+        /// </summary>
         public static bool CheckDown(int index)
         {
             //Console.WriteLine($"checking {index} down"); // debug
@@ -242,6 +224,9 @@ namespace DungeonExplorer
             }
         }
 
+        /// <summary>
+        /// checks if the target node has a connection to the node left of it
+        /// </summary>
         public static bool CheckLeft(int index)
         {
             //Console.WriteLine($"checking {index} left"); // debug
@@ -256,6 +241,9 @@ namespace DungeonExplorer
             }
         }
 
+        /// <summary>
+        /// checks if the target node has a connection to the node right of it
+        /// </summary>
         public static bool CheckRight(int index)
         {
             //Console.WriteLine($"checking {index} right"); // debug
@@ -270,6 +258,9 @@ namespace DungeonExplorer
             }
         }
 
+        /// <summary>
+        /// display the relationships of each graph node, for debugging purposes
+        /// </summary>
         public static void PrintGraph()
         {
             for (int i = 0; i < size * size; i++)
@@ -290,5 +281,4 @@ namespace DungeonExplorer
             }
         }
     }
-
 }
