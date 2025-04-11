@@ -8,7 +8,7 @@ namespace DungeonExplorer
     /// Sets up the main gameplay structure
     /// </summary>internal
     class Game : GameContext
-    {
+    { 
         public bool playing;
 
         /// <summary>

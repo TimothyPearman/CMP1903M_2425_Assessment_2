@@ -24,4 +24,4 @@ namespace DungeonExplorer
             Console.WriteLine(Health); 
         }
     }
-}
+} 
