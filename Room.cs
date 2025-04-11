@@ -60,4 +60,4 @@ namespace DungeonExplorer
             // move event display from userinput class to here in later version 
         }
     }
-}
+} 

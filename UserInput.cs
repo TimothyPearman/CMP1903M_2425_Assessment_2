@@ -41,7 +41,7 @@ namespace DungeonExplorer
             if (userInput.ToLower() == "quit" || userInput.ToLower() == "q")
             {
                 Console.Clear(); 
-                Console.WriteLine("Thanks for playing! :D");
+                Console.WriteLine($"Thanks for playing, {Player.Name}! :D"); // move to context class in future update
                 Console.ReadLine(); 
 
                 Environment.Exit(0); // exit the program
@@ -267,4 +267,4 @@ namespace DungeonExplorer
             return true;
         }
     }
-}
+}  
