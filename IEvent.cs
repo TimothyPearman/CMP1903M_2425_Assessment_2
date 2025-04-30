@@ -11,6 +11,8 @@ namespace DungeonExplorer
     /// </summary>
     public interface IEvent
     {
-        void GetEventStats();
+        string Type(); 
+
+        int Stat();
     }
 }  
