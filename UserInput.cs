@@ -379,12 +379,6 @@ namespace DungeonExplorer
                 case 4:
                     switch (userInput)
                     {
-                        case "enter":
-                        case "":
-                        case "leave":
-
-                            return true;
-
                         case "a":
                         case "attack":
                             //Console.WriteLine("attack"); // debug
