@@ -11,20 +11,45 @@ namespace DungeonExplorer
     /// </summary>
     public class Item : IEvent
     {
+        string[] itemTypes = { "sword", "shield", "armour", "potion", "key", "pile of gold", "Torch", "Lockpick", };
+        public string type;
+        public int stat;
+        
+
+        private static readonly Random random = new Random();
+
         /// <summary>
-        /// constructor for item object
+        /// constructor for item objectt hat generates the type of item
         /// </summary>
         public Item()
         {
             //Console.WriteLine("Item created"); // debug
+
+            // randomly generate item type
+            type = itemTypes[random.Next(0, itemTypes.Length)];
+            stat = 100 + random.Next(0, 100);
+            
         }
 
         /// <summary>
-        /// displays the properties of the object
+        /// returns item type
         /// </summary>
-        public void GetEventStats()
+        public string Type()
         {
-            Console.WriteLine("Getting Item Stats"); // debug
+            //Console.WriteLine("Getting Item type"); // debug
+
+            return type;
+        }
+
+        /// <summary>
+        /// returns item stat
+        /// </summary>
+        public int Stat()
+        {
+            //Console.WriteLine("Getting Item Stats"); // debug
+
+            return stat;
         }
     }
 }
+ 

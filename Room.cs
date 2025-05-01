@@ -1,6 +1,7 @@
 ﻿using System.Xml.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DungeonExplorer
 {
@@ -22,16 +23,17 @@ namespace DungeonExplorer
         public Room(int index)
         {
             this.roomNumber = index;
-            this.eventChance = 3; // 1 in 3 chance of an event occurring
+            this.eventChance = 1; // 1 in 2 chance of an event occurring
 
             // randomly generate events for the room
             for (int j = 0; j < 2; j++) 
             {
-                if (random.Next(0, eventChance) == 0)
+                if ((random.Next(0, eventChance) == 0) && (roomNumber != 12)) //ensure nothing can spawn in the start room
                 {
                     //Console.WriteLine("event"); // debug
 
-                    switch(random.Next(0, 2))
+                    // randomly decide if event will be of type item or monster
+                    switch (random.Next(0, 2))
                     {
                         case 0:
                             events.Add(new Item());
@@ -39,6 +41,7 @@ namespace DungeonExplorer
 
                         case 1:
                             events.Add(new Monster());
+                            Game.monsterCount += 1; // total number of monster alive - for win condition
                             break;
 
                         default:
@@ -53,11 +56,43 @@ namespace DungeonExplorer
         }
 
         /// <summary>
-        /// displays the events within the room
+        /// displays all monsters in the room
         /// </summary>
-        public static void GetDescription()
+        public static bool CheckMonster()
         {
-            // move event display from userinput class to here in later version 
+            // copy list of events from Room object for legibility
+            List<IEvent> events = Map.map[Player.positionX - 1, Player.positionY - 1].events;
+
+            Console.Clear();
+
+            // if there is an event in the room, display to user
+            if (events.Any(e => e is Monster))
+            {
+                Console.WriteLine("the room is guarded by:");
+
+                int index = 1;
+                foreach (var e in events)
+                {
+                    //Console.WriteLine(e.EventType());
+
+                    if (e is Monster)
+                    {
+                        Console.WriteLine($"{index}: {e.Type()}, {e.Stat()} hp");
+                        index++;
+                    }
+                }
+
+                Console.WriteLine("");
+
+                return true;
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("No monsters in the room\n");
+                
+                return false;
+            }
         }
     }
-}
+} 

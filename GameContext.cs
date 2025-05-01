@@ -41,6 +41,7 @@ namespace DungeonExplorer
 
                     break;
 
+                 // user name context
                 case 2:
                      // asks user for alias
                     Console.WriteLine("Awakening on a cold floor, a pounding headache clouds any clear thought");
@@ -49,6 +50,7 @@ namespace DungeonExplorer
 
                     break;
 
+                 // setup context
                 case 3:
                      // informs the user that they have a sword and have moved onto the next room
                     Console.Clear();
@@ -56,45 +58,70 @@ namespace DungeonExplorer
                     Console.WriteLine("The walls caging you seem well kept, bathed by countless torches");
                     Console.WriteLine("Acknowledging the sword displayed in the center of the room");
                     Console.WriteLine("You grab it and prepare to move onward...");
-                    Inventory.Add("sword");
                     Console.ReadKey();
-                    break; 
+                    break;
 
+                 // actions context
                 case 4:
                     // asks user for what action they would like to take (inventory/health/engage/search/move)
                     Console.WriteLine("Actions: \n-Inventory (I)\n-Health (H)\n-Engage (E)\n-Search (S)\n-Move (M)");
                     Console.WriteLine("\x1b[B");
-                    //UserInput.Get(?);
+                    UserInput.Get(1);
 
                     break;
 
+                 // inventory actions context
                 case 5:
-                    // asks user for what action they would like to take //map move options
+                    // asks user for what action they would like to take (equip/drop)
+                    Console.WriteLine("\nActions: \n-Equip (E)\n-Drop (D)");
+                    UserInput.Get(2);
+
+                    break;
+
+                 // health actions context
+                case 6:
+                    // asks user for what action they would like to take (use)
+                    Console.WriteLine("\nActions: \n-Use (u)");
+                    UserInput.Get(3);
+
+                    break;
+
+                 // engage actions context
+                case 7:
+                    // asks user for what action they would like to take (attack/block) - monster
+                    Console.WriteLine("Actions: \n-Attack (A)\n-Block (B)");
+                    UserInput.Get(4);
+
+                    break;
+
+                 // search actions context
+                case 8:
+                    // asks user for what action they would like to take (take) - item
+                    Console.WriteLine("\nActions: \n-Take (T)\n\n");
+                    UserInput.Get(5);
+
+                    break;
+
+                 // search context (monster in room)
+                case 9:
+                    Console.WriteLine("Cannot search the room, a monster guards it...");
+                    Console.ReadLine();
+
+                    break;
+
+                 // move actions context
+                case 10:
                     Console.Write("\x1b[H");
                     Console.Write($"\x1b[22B");
-                    Console.WriteLine("Actions: \n-Stay \n-Up (w) \n-Down (s) \n-Left (a) \n-Right (d)");
-                    //UserInput.Get(?);
+                    Console.WriteLine("Actions: \n-Up (w) \n-Down (s) \n-Left (a) \n-Right (d)");
 
                     break;
 
-                case 6:
-                    // asks user for what action they would like to take//inventory management options
-                    Console.WriteLine("\nActions: \n-Equip (A)\n-Drop (D)");
-                    //UserInput.Get(?);
-
-                    break;
-
-                case 7:
-                    // asks user for what action they would like to take (attack/block/run) - monster
-                    Console.WriteLine("Actions: \n-Attack (A)\n-Block (B)\n-Run (R)");
-                    //UserInput.Get(?);
-
-                    break;
-
-                case 8:
-                    // asks user for what action they would like to take (take/leave/drop) - item
-                    Console.WriteLine("\nActions: \n-Take (T)\n-Leave (L)\n-Drop (D)");
-                    //UserInput.Get(?);
+                 // win context
+                case 11:
+                    Console.Clear();
+                    Console.WriteLine($"congratulations {Player.name}, you have slain all enemies with this dungeon! you may now exit this place...");
+                    Console.ReadLine();
 
                     break;
 
@@ -111,3 +138,4 @@ namespace DungeonExplorer
 }
 
 
+ 

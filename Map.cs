@@ -25,7 +25,7 @@ namespace DungeonExplorer
             // Create a 5x5 grid to represent map
             map = new Room[5, 5];
 
-            // Initialize each room (you can customize this further)
+            // Initialize each room in the grid
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)
@@ -115,7 +115,7 @@ namespace DungeonExplorer
         private static Random random = new Random();
 
         /// <summary>
-        /// 
+        /// creates a graph data structure and populates it with random relationships between nodes
         /// </summary>
         public static void Create()
         {
@@ -128,9 +128,9 @@ namespace DungeonExplorer
         }
 
         /// <summary>
-        /// 
+        /// adds a connection between two nodes in the graph
         /// </summary>
-        public static void AddEdge(int from, int to)
+        public static void AddRelationship(int from, int to)
         {
             if (!adjList[from].Contains(to))
             {
@@ -140,11 +140,11 @@ namespace DungeonExplorer
         }
 
         /// <summary>
-        /// generates random connections between graph nodes
+        /// generates random relationships between graph nodes
         /// </summary>
         public static void RandomizeGraph(double connectionChance = 0.5)
         {
-            // ensure every node has at least one connection
+            // iterate through each node twice and add random connections
             for (int pass = 0; pass < 2; pass++)
             {
                 for (int row = 0; row < size; row++)
@@ -159,14 +159,14 @@ namespace DungeonExplorer
                             case 0:
                                 if (index > 4)
                                 {
-                                    AddEdge(index, index - 5); // up
+                                    AddRelationship(index, index - 5); // up
                                 }
                                 break;
 
                             case 1:
                                 if (index < 20)
                                 {
-                                    AddEdge(index, index + 5); // down
+                                    AddRelationship(index, index + 5); // down
                                 }
                                 break;
 
@@ -174,14 +174,14 @@ namespace DungeonExplorer
                                 if (index % 5 != 0)
                                 {
 
-                                    AddEdge(index, index - 1); // left
+                                    AddRelationship(index, index - 1); // left
                                 }
                                 break;
 
                             case 3:
                                 if ((index % 5) - 4 != 0)
                                 {
-                                    AddEdge(index, index + 1); // right
+                                    AddRelationship(index, index + 1); // right
                                 }
                                 break;
                         }
@@ -263,6 +263,7 @@ namespace DungeonExplorer
         /// </summary>
         public static void PrintGraph()
         {
+            //iterates through each node in the graph and prints its connections
             for (int i = 0; i < size * size; i++)
             {
                 if (adjList.ContainsKey(i))
@@ -281,4 +282,4 @@ namespace DungeonExplorer
             }
         }
     }
-}
+} 

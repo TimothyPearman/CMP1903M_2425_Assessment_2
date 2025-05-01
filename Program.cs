@@ -18,9 +18,9 @@ namespace DungeonExplorer
     {
         static void Main(string[] args)
         {
-            // Create a new instance of the game and start it
+             // Create a new instance of the game and start it
             Game game = new Game();
             game.Start();
         }
     }
-}
+} 
